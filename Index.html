@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Baby Shower de Angel Esteban</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================
+   TOKENS
+   ============================================ */
+:root{
+  --cream:#FBF6EC;
+  --sky-1:#E7EEF3;
+  --sky-2:#C7D9E8;
+  --sky-deep:#7C96AC;
+  --navy:#2E3B4E;
+  --navy-soft:#5A6B7D;
+  --gold:#C9A96E;
+  --gold-soft:#E4D2AE;
+  --blush:#F3E4D0;
+  --white:#FFFFFF;
+  --shadow: 0 20px 50px -20px rgba(46,59,78,0.35);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:'Cormorant Garamond', serif;
+  background:var(--cream);
+  color:var(--navy);
+  overflow-x:hidden;
+  -webkit-tap-highlight-color:transparent;
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+}
+
+.eyebrow{
+  font-family:'Jost', sans-serif;
+  font-weight:500;
+  letter-spacing:0.35em;
+  text-transform:uppercase;
+  font-size:11px;
+  color:var(--sky-deep);
+}
+
+/* ============================================
+   BACKGROUND: sky, stars, clouds (shared)
+   ============================================ */
+.sky-bg{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  background:
+    radial-gradient(120% 90% at 50% 0%, #F1E9DA 0%, var(--sky-1) 45%, var(--sky-2) 100%);
+  overflow:hidden;
+}
+.star{
+  position:absolute;
+  width:4px;height:4px;
+  background:var(--gold);
+  border-radius:50%;
+  opacity:0.8;
+  animation:twinkle 3.4s ease-in-out infinite;
+}
+.star.big{width:6px;height:6px;}
+@keyframes twinkle{
+  0%,100%{opacity:0.15; transform:scale(0.8);}
+  50%{opacity:1; transform:scale(1.2);}
+}
+.moon{
+  position:absolute;
+  top:6%; right:8%;
+  width:70px;height:70px;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 35%, #FFFDF6, var(--gold-soft) 70%);
+  box-shadow:0 0 40px 10px rgba(201,169,110,0.35);
+}
+.cloud{
+  position:absolute;
+  background:var(--white);
+  border-radius:100px;
+  opacity:0.85;
+  filter:blur(0.3px);
+}
+.cloud::before,.cloud::after{
+  content:"";
+  position:absolute;
+  background:var(--white);
+  border-radius:50%;
+}
+.drift-slow{animation:drift 34s linear infinite;}
+.drift-med{animation:drift 22s linear infinite;}
+@keyframes drift{
+  0%{transform:translateX(-6%);}
+  50%{transform:translateX(6%);}
+  100%{transform:translateX(-6%);}
+}
+
+/* ============================================
+   COVER SCREEN
+   ============================================ */
+#cover{
+  position:fixed;
+  inset:0;
+  z-index:10;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:32px;
+  cursor:pointer;
+  transition:opacity 1.1s ease, transform 1.1s ease;
+}
+#cover.hidden{
+  opacity:0;
+  transform:scale(1.06);
+  pointer-events:none;
+}
+.ornament{
+  font-size:22px;
+  color:var(--gold);
+  margin-bottom:18px;
+  animation:float 4s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
+}
+.cover-title{
+  font-family:'Great Vibes', cursive;
+  font-size:clamp(52px, 16vw, 80px);
+  color:var(--navy);
+  line-height:1;
+  margin:6px 0 4px;
+}
+.cover-sub{
+  font-family:'Jost', sans-serif;
+  font-weight:400;
+  font-size:15px;
+  letter-spacing:0.08em;
+  color:var(--navy-soft);
+  margin-bottom:46px;
+}
+.tap-hint{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+}
+.tap-circle{
+  position:relative;
+  width:92px;height:92px;
+  border-radius:50%;
+  background:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Jost', sans-serif;
+  font-size:12px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--navy);
+  box-shadow:var(--shadow);
+}
+.tap-circle::before, .tap-circle::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  border:1px solid var(--gold);
+  animation:pulse-ring 2.6s ease-out infinite;
+}
+.tap-circle::after{animation-delay:1.3s;}
+@keyframes pulse-ring{
+  0%{transform:scale(1); opacity:0.7;}
+  100%{transform:scale(1.9); opacity:0;}
+}
+.tap-label{
+  font-family:'Jost', sans-serif;
+  font-size:12px;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--sky-deep);
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+#content{
+  position:relative;
+  z-index:1;
+  max-width:480px;
+  margin:0 auto;
+  padding:38px 24px 60px;
+  opacity:0;
+}
+#content.show{
+  animation:fadeUp 1s ease forwards;
+}
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(18px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+.corner-photo{
+  position:fixed;
+  z-index:5;
+  width:84px;height:84px;
+  border-radius:50%;
+  border:4px solid var(--white);
+  box-shadow:var(--shadow);
+  object-fit:cover;
+  opacity:0;
+  background:linear-gradient(145deg, var(--blush), var(--sky-2));
+}
+#photo1{
+  top:22px; left:18px;
+  transform:translate(-40px,-40px) rotate(-8deg);
+}
+#photo2{
+  bottom:22px; right:18px;
+  transform:translate(40px,40px) rotate(8deg);
+}
+.corner-photo.reveal{
+  animation:cornerIn 1.1s cubic-bezier(.22,1,.36,1) forwards;
+}
+#photo2.reveal{animation-delay:0.25s;}
+@keyframes cornerIn{
+  to{opacity:1; transform:translate(0,0) rotate(-6deg);}
+}
+#photo2.reveal{
+  animation-name:cornerIn2;
+}
+@keyframes cornerIn2{
+  to{opacity:1; transform:translate(0,0) rotate(6deg);}
+}
+
+.header-block{
+  text-align:center;
+  margin-bottom:28px;
+}
+.header-block .eyebrow{margin-bottom:10px;}
+.header-title{
+  font-family:'Great Vibes', cursive;
+  font-size:clamp(44px,13vw,58px);
+  color:var(--navy);
+  margin:2px 0 10px;
+}
+.header-line{
+  width:64px;height:1px;
+  background:var(--gold);
+  margin:0 auto;
+  opacity:0.7;
+}
+
+/* main invitation image, ratio 1024x1536 -> 2:3 */
+.frame-wrap{
+  position:relative;
+  margin:26px auto 30px;
+  max-width:340px;
+  opacity:0;
+  transform:scale(0.86);
+}
+.frame-wrap.reveal{
+  animation:mainReveal 1.3s cubic-bezier(.19,1,.22,1) forwards;
+}
+@keyframes mainReveal{
+  0%{opacity:0; transform:scale(0.86);}
+  60%{opacity:1;}
+  100%{opacity:1; transform:scale(1);}
+}
+.frame{
+  position:relative;
+  width:100%;
+  aspect-ratio:1024/1536;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  border:6px solid var(--white);
+  outline:1px solid var(--gold-soft);
+}
+.frame img{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+}
+/* Placeholder shown automatically if the image file is not found */
+.frame .placeholder{
+  position:absolute; inset:0;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:10px;
+  padding:22px;
+  text-align:center;
+  background:linear-gradient(160deg, var(--sky-2), var(--blush));
+  font-family:'Jost', sans-serif;
+  color:var(--navy);
+}
+.frame .placeholder strong{
+  font-family:'Cormorant Garamond', serif;
+  font-size:20px;
+}
+.frame .placeholder code{
+  background:rgba(255,255,255,0.6);
+  padding:3px 8px;
+  border-radius:6px;
+  font-size:12px;
+}
+.frame-corner{
+  position:absolute;
+  font-family:'Jost', sans-serif;
+  font-size:10px;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--gold);
+  bottom:-24px; left:0; right:0;
+  text-align:center;
+}
+
+/* details card */
+.details-card{
+  background:var(--white);
+  border-radius:20px;
+  padding:26px 22px;
+  box-shadow:var(--shadow);
+  text-align:center;
+  opacity:0;
+}
+.details-card.reveal{
+  animation:fadeUp 1s ease 0.3s forwards;
+}
+.details-card p.msg{
+  font-size:19px;
+  line-height:1.5;
+  color:var(--navy-soft);
+  margin:0 0 20px;
+  font-style:italic;
+}
+.detail-row{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:10px 0;
+  font-family:'Jost', sans-serif;
+  font-size:14px;
+  color:var(--navy);
+}
+.detail-row + .detail-row{
+  border-top:1px dashed var(--sky-2);
+}
+.detail-row .ico{color:var(--gold); font-size:16px;}
+.detail-row b{font-weight:600;}
+
+/* RSVP button */
+#rsvp-wrap{
+  display:flex;
+  justify-content:center;
+  margin-top:34px;
+  min-height:64px;
+}
+#rsvp-btn{
+  opacity:0;
+  transform:translateY(14px) scale(0.95);
+  pointer-events:none;
+  font-family:'Jost', sans-serif;
+  font-size:14px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  font-weight:500;
+  color:var(--white);
+  background:linear-gradient(135deg, var(--sky-deep), var(--navy));
+  border:none;
+  padding:17px 34px;
+  border-radius:40px;
+  cursor:pointer;
+  box-shadow:0 15px 30px -12px rgba(46,59,78,0.5);
+  position:relative;
+}
+#rsvp-btn.show{
+  animation:btnIn 0.9s cubic-bezier(.22,1,.36,1) forwards, glow 2.6s ease-in-out 1s infinite;
+  pointer-events:auto;
+}
+@keyframes btnIn{
+  to{opacity:1; transform:translateY(0) scale(1);}
+}
+@keyframes glow{
+  0%,100%{box-shadow:0 15px 30px -12px rgba(46,59,78,0.5);}
+  50%{box-shadow:0 15px 40px -8px rgba(201,169,110,0.65);}
+}
+
+/* ============================================
+   RSVP FORM (modal overlay)
+   ============================================ */
+#rsvp-modal{
+  position:fixed;
+  inset:0;
+  z-index:20;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  background:rgba(46,59,78,0.45);
+  backdrop-filter:blur(3px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.4s ease;
+}
+#rsvp-modal.open{
+  opacity:1;
+  pointer-events:auto;
+}
+@media (min-width:560px){
+  #rsvp-modal{align-items:center;}
+}
+.modal-card{
+  width:100%;
+  max-width:420px;
+  background:var(--cream);
+  border-radius:26px 26px 0 0;
+  padding:32px 26px 34px;
+  box-shadow:0 -10px 40px rgba(46,59,78,0.4);
+  transform:translateY(100%);
+  transition:transform 0.5s cubic-bezier(.22,1,.36,1);
+  position:relative;
+}
+@media (min-width:560px){
+  .modal-card{border-radius:24px;}
+}
+#rsvp-modal.open .modal-card{
+  transform:translateY(0);
+}
+.modal-close{
+  position:absolute;
+  top:16px; right:18px;
+  background:none;
+  border:none;
+  font-size:22px;
+  color:var(--navy-soft);
+  cursor:pointer;
+  font-family:'Jost',sans-serif;
+}
+.modal-title{
+  font-family:'Great Vibes', cursive;
+  font-size:38px;
+  text-align:center;
+  color:var(--navy);
+  margin:4px 0 2px;
+}
+.modal-sub{
+  font-family:'Jost', sans-serif;
+  font-size:13px;
+  text-align:center;
+  color:var(--navy-soft);
+  margin-bottom:26px;
+}
+
+.field{
+  margin-bottom:20px;
+  position:relative;
+}
+.field label{
+  font-family:'Jost', sans-serif;
+  font-size:12px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--sky-deep);
+  display:block;
+  margin-bottom:8px;
+}
+.field input[type="text"]{
+  width:100%;
+  border:none;
+  border-bottom:2px solid var(--sky-2);
+  background:transparent;
+  font-family:'Cormorant Garamond', serif;
+  font-size:19px;
+  padding:8px 2px;
+  color:var(--navy);
+  outline:none;
+  transition:border-color 0.3s ease;
+}
+.field input[type="text"]:focus{
+  border-color:var(--gold);
+}
+.stepper{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  border-radius:14px;
+  padding:8px 8px 8px 18px;
+  box-shadow:0 8px 20px -12px rgba(46,59,78,0.3);
+}
+.stepper .count{
+  font-family:'Cormorant Garamond', serif;
+  font-size:24px;
+  min-width:30px;
+  text-align:center;
+}
+.stepper button{
+  width:38px;height:38px;
+  border-radius:50%;
+  border:none;
+  background:var(--sky-1);
+  color:var(--navy);
+  font-size:18px;
+  cursor:pointer;
+  transition:transform 0.15s ease, background 0.2s ease;
+}
+.stepper button:active{transform:scale(0.9);}
+.stepper button:hover{background:var(--gold-soft);}
+
+.submit-btn{
+  width:100%;
+  border:none;
+  border-radius:40px;
+  padding:16px;
+  font-family:'Jost', sans-serif;
+  font-size:14px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  font-weight:500;
+  color:var(--white);
+  background:linear-gradient(135deg, var(--gold), var(--sky-deep));
+  cursor:pointer;
+  margin-top:6px;
+  transition:transform 0.2s ease;
+}
+.submit-btn:active{transform:scale(0.97);}
+
+/* success state */
+.success-view{
+  display:none;
+  text-align:center;
+  padding:10px 0 4px;
+}
+.success-view.show{display:block;}
+.form-view.hide{display:none;}
+.success-icon{
+  font-size:44px;
+  color:var(--gold);
+  margin-bottom:10px;
+  animation:pop 0.6s cubic-bezier(.22,1,.36,1);
+}
+@keyframes pop{
+  0%{transform:scale(0);}
+  70%{transform:scale(1.15);}
+  100%{transform:scale(1);}
+}
+.success-view h3{
+  font-family:'Great Vibes', cursive;
+  font-size:32px;
+  margin:0 0 8px;
+  color:var(--navy);
+}
+.success-view p{
+  font-family:'Jost', sans-serif;
+  font-size:14px;
+  color:var(--navy-soft);
+  line-height:1.6;
+}
+
+footer.credit{
+  text-align:center;
+  font-family:'Jost', sans-serif;
+  font-size:11px;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--sky-deep);
+  margin-top:40px;
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     FONDO: cielo, estrellas, nubes, luna
+     ============================================ -->
+<div class="sky-bg" id="skybg">
+  <div class="moon"></div>
+</div>
+
+<!-- ============================================
+     PANTALLA DE INICIO / CARGA
+     ============================================ -->
+<div id="cover">
+  <div class="ornament">✦</div>
+  <div class="eyebrow">Baby Shower</div>
+  <h1 class="cover-title">Angel Esteban</h1>
+  <p class="cover-sub">Un angelito está por llegar del cielo</p>
+  <div class="tap-hint">
+    <div class="tap-circle">Abrir</div>
+    <div class="tap-label">Dale clic</div>
+  </div>
+</div>
+
+<!-- ============================================
+     CONTENIDO PRINCIPAL
+     ============================================ -->
+<div id="content">
+
+  <!-- Foto esquina superior izquierda -->
+  <img id="photo1" class="corner-photo" src="foto1.jpg"
+       onerror="this.onerror=null; this.src='https://via.placeholder.com/160x160/C7D9E8/2E3B4E?text=foto1.jpg'"
+       alt="Foto 1">
+
+  <!-- Foto esquina inferior derecha -->
+  <img id="photo2" class="corner-photo" src="foto2.jpg"
+       onerror="this.onerror=null; this.src='https://via.placeholder.com/160x160/F3E4D0/2E3B4E?text=foto2.jpg'"
+       alt="Foto 2">
+
+  <div class="header-block">
+    <div class="eyebrow">Nos acompañas a celebrar a</div>
+    <h2 class="header-title">Angel Esteban</h2>
+    <div class="header-line"></div>
+  </div>
+
+  <!-- Imagen principal de la invitación (1024 x 1536) -->
+  <div class="frame-wrap" id="frameWrap">
+    <div class="frame">
+      <img id="mainImage" src="invitacion-principal.jpg" alt="Invitación baby shower Angel Esteban"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'placeholder',innerHTML:'<strong>Coloca aquí tu imagen</strong><span>Reemplaza el archivo llamado</span><code>invitacion-principal.jpg</code><span>Tamaño recomendado: 1024 × 1536 px</span>'}))">
+    </div>
+    <div class="frame-corner">✦ Con amor, esperamos tu presencia ✦</div>
+  </div>
+
+  <div class="details-card" id="detailsCard">
+    <p class="msg">"Una pequeña estrella está por unirse a nuestra familia y queremos que seas parte de este momento tan especial."</p>
+    <div class="detail-row"><span class="ico">◐</span><span>Fecha: <b>Por confirmar</b></span></div>
+    <div class="detail-row"><span class="ico">◑</span><span>Hora: <b>Por confirmar</b></span></div>
+    <div class="detail-row"><span class="ico">◒</span><span>Lugar: <b>Por confirmar</b></span></div>
+  </div>
+
+  <div id="rsvp-wrap">
+    <button id="rsvp-btn">Confirma tu asistencia</button>
+  </div>
+
+  <footer class="credit">Baby Shower · Angel Esteban</footer>
+</div>
+
+<!-- ============================================
+     MODAL RSVP
+     ============================================ -->
+<div id="rsvp-modal">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose" aria-label="Cerrar">✕</button>
+
+    <div class="form-view" id="formView">
+      <div class="ornament" style="text-align:center;">✦</div>
+      <h3 class="modal-title">Confirmar asistencia</h3>
+      <p class="modal-sub">Nos encantaría contar contigo</p>
+
+      <form id="rsvpForm">
+        <div class="field">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required>
+        </div>
+
+        <div class="field">
+          <label>Cantidad de personas</label>
+          <div class="stepper">
+            <button type="button" id="minusBtn" aria-label="Restar">−</button>
+            <span class="count" id="countValue">1</span>
+            <button type="button" id="plusBtn" aria-label="Sumar">+</button>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Enviar confirmación</button>
+      </form>
+    </div>
+
+    <div class="success-view" id="successView">
+      <div class="success-icon">✦</div>
+      <h3>¡Gracias!</h3>
+      <p id="successMsg">Tu asistencia ha sido confirmada.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // ---------- Generar estrellas y nubes dinámicamente ----------
+  var sky = document.getElementById('skybg');
+  for (var i = 0; i < 22; i++){
+    var s = document.createElement('div');
+    s.className = 'star' + (Math.random() > 0.7 ? ' big' : '');
+    s.style.top = (Math.random() * 90) + '%';
+    s.style.left = (Math.random() * 100) + '%';
+    s.style.animationDelay = (Math.random() * 3) + 's';
+    sky.appendChild(s);
+  }
+  function makeCloud(top, left, w, h, animClass){
+    var c = document.createElement('div');
+    c.className = 'cloud ' + animClass;
+    c.style.top = top; c.style.left = left;
+    c.style.width = w + 'px'; c.style.height = h + 'px';
+    c.style.setProperty('--w', w);
+    sky.appendChild(c);
+    var b1 = document.createElement('style');
+    return c;
+  }
+  var c1 = makeCloud('12%','5%',110,40,'drift-slow');
+  c1.style.setProperty('box-shadow', '30px -14px 0 -6px #fff, 60px 4px 0 -10px #fff, -20px 6px 0 -12px #fff');
+  var c2 = makeCloud('30%','60%',90,32,'drift-med');
+  c2.style.setProperty('box-shadow', '24px -10px 0 -6px #fff, 46px 4px 0 -10px #fff');
+  var c3 = makeCloud('85%','12%',100,36,'drift-slow');
+  c3.style.setProperty('box-shadow', '26px -12px 0 -6px #fff, 52px 4px 0 -8px #fff');
+
+  // ---------- Abrir invitación ----------
+  var cover = document.getElementById('cover');
+  var content = document.getElementById('content');
+  var frameWrap = document.getElementById('frameWrap');
+  var detailsCard = document.getElementById('detailsCard');
+  var photo1 = document.getElementById('photo1');
+  var photo2 = document.getElementById('photo2');
+  var rsvpBtn = document.getElementById('rsvp-btn');
+
+  cover.addEventListener('click', openInvitation);
+
+  var opened = false;
+  function openInvitation(){
+    if (opened) return;
+    opened = true;
+    cover.classList.add('hidden');
+
+    setTimeout(function(){
+      content.classList.add('show');
+      photo1.classList.add('reveal');
+      photo2.classList.add('reveal');
+      frameWrap.classList.add('reveal');
+      detailsCard.classList.add('reveal');
+
+      // Boton de confirmación aparece 10s despues de mostrarse la invitación
+      setTimeout(function(){
+        rsvpBtn.classList.add('show');
+      }, 10000);
+
+    }, 500);
+  }
+
+  // ---------- Modal RSVP ----------
+  var modal = document.getElementById('rsvp-modal');
+  var modalClose = document.getElementById('modalClose');
+  var formView = document.getElementById('formView');
+  var successView = document.getElementById('successView');
+  var form = document.getElementById('rsvpForm');
+  var countValue = document.getElementById('countValue');
+  var minusBtn = document.getElementById('minusBtn');
+  var plusBtn = document.getElementById('plusBtn');
+  var count = 1;
+
+  rsvpBtn.addEventListener('click', function(){
+    modal.classList.add('open');
+  });
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){
+    if (e.target === modal) closeModal();
+  });
+  function closeModal(){
+    modal.classList.remove('open');
+  }
+
+  minusBtn.addEventListener('click', function(){
+    if (count > 1){ count--; countValue.textContent = count; }
+  });
+  plusBtn.addEventListener('click', function(){
+    if (count < 20){ count++; countValue.textContent = count; }
+  });
+
+  // ---------------------------------------------------------
+  // CONEXION A GOOGLE SHEETS
+  // Reemplaza la URL de abajo por la que te da tu propio
+  // Google Apps Script al publicarlo como "Web App".
+  // Ver instrucciones completas debajo de este bloque de código.
+  // ---------------------------------------------------------
+  var SHEET_SCRIPT_URL = https://script.google.com/macros/s/AKfycbwFMwlwaM_7vuwE2czEHTiecW1_F9vI_4zUvmtvAFq8Xs3DB1LCnj2RSGcSZH4s1XQq/exec;
+
+  var submitBtn = form.querySelector('.submit-btn');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var nombre = document.getElementById('nombre').value.trim();
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+
+    var payload = new URLSearchParams();
+    payload.append('nombre', nombre);
+    payload.append('personas', count);
+    payload.append('fecha', new Date().toLocaleString('es-CO'));
+
+    fetch(SHEET_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors', // Apps Script no responde con headers CORS; no-cors evita el error
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: payload.toString()
+    })
+    .catch(function(err){
+      // Con mode "no-cors" no podemos leer la respuesta ni detectar
+      // errores reales del servidor; esto solo cubre fallos de red.
+      console.warn('No se pudo contactar Google Sheets:', err);
+    })
+    .finally(function(){
+      document.getElementById('successMsg').textContent =
+        '¡Gracias, ' + nombre + '! Confirmaste la asistencia de ' + count +
+        (count == 1 ? ' persona' : ' personas') + '.';
+
+      formView.classList.add('hide');
+      successView.classList.add('show');
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
